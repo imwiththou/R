@@ -1,4 +1,4 @@
-R
+R for CHNNS (Computational Human Neural Networking Simulation)
 ==
 
 This project is based on computational simulation of human neural networking by R. Some of the ideas come from the generosity of biopunks and R lovers.
