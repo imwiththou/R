@@ -1,0 +1,457 @@
+data(volcano)
+z <- 2 * volcano # Exaggerate the relief#
+x <- 10 * (1:nrow(z)) # 10 meter spacing (S to N)#
+y <- 10 * (1:ncol(z)) # 10 meter spacing (E to W)
+zlim <- range(y)#
+zlen <- zlim[2] - zlim[1] + 1#
+colorlut <- terrain.colors(zlen) # height color lookup table#
+col <- colorlut[ z-zlim[1]+1 ] # assign colors to heights
+persp3d(x, y, z, color = col, aspect = c(1.5, 1, 0.6))
+play3d(spin3d(axis = c(0, 0, 1), rpm = 6), duration = 10)
+scatterplot3d(x=mtcars$wt,#
+y=mtcars$disp,#
+z=mtcars$mpg)
+scatterplot3d(mtcars$wt,mtcars$disp,mtcars$mpg,#
+pch=16, highlight.3d=TRUE, angle=20,#
+xlab="Weight",ylab="Displacement",zlab="Fuel Economy (mpg)",#
+type="h",#
+main="Relationships between car specifications")
+x<-rnorm(1000)#
+plot(density(x))#
+rug(x)
+metals<-read.csv("metals.csv")#
+plot(Ba~Cu,data=metals,xlim=c(0,100))#
+rug(metals$Cu)#
+rug(metals$Ba,side=2,col="red",ticksize=0.02)
+n <- 10000#
+x <- matrix(rnorm(n), ncol=2)#
+y <- matrix(rnorm(n, mean=3, sd=1.5), ncol=2)#
+smoothScatter(x,y)
+n <- 5#
+x <- matrix(rnorm(n), ncol=2)#
+y <- matrix(rnorm(n, mean=0.3, sd=1.5), ncol=2)#
+smoothScatter(x,y)
+n <- 500#
+x <- matrix(rnorm(n), ncol=2)#
+y <- matrix(rnorm(n, mean=3, sd=1.5), ncol=2)#
+smoothScatter(x,y)
+n <- 500000#
+x <- matrix(rnorm(n), ncol=2)#
+y <- matrix(rnorm(n, mean=3, sd=1.5), ncol=2)#
+smoothScatter(x,y)
+n <- 2#
+x <- matrix(rnorm(n), ncol=2)#
+y <- matrix(rnorm(n, mean=3, sd=1.5), ncol=2)#
+smoothScatter(x,y)
+n <- rnorm(10)#
+x <- matrix(rnorm(n), ncol=2)#
+y <- matrix(rnorm(n, mean=3, sd=1.5), ncol=2)#
+smoothScatter(x,y)
+n <- rnorm(5)#
+x <- matrix(rnorm(n), ncol=20)#
+y <- matrix(rnorm(n, mean=3, sd=1.5), ncol=2)#
+smoothScatter(x,y)
+n <- rnorm(5)#
+x <- matrix(rnorm(n), ncol=2)#
+y <- matrix(rnorm(n, mean=2, sd=1), ncol=2)#
+smoothScatter(x,y)
+n <- rnorm(2)#
+x <- matrix(rnorm(n), ncol=2)#
+y <- matrix(rnorm(n, mean=2, sd=1), ncol=2)#
+smoothScatter(x,y)
+n <- 5000#
+x <- matrix(rnorm(n), ncol=2)#
+y <- matrix(rnorm(n, mean=2, sd=1), ncol=2)#
+smoothScatter(x,y)
+plot(cars$dist~cars$speed,#y~x，cars是R自带的数据#
+main="Relationship between car distance & speed",#标题#
+xlab = "Speed(miles per hour)",#x轴标题#
+ylab = "Distance travelled (miles)",#Y轴标题#
+xlim = c(0,30),#设置x轴的取值区间为0到30#
+ylim = c(0,140),#设置y轴的取值区间为0到140#
+xaxs = "i",#这里是设置x轴的风格，暂时没看明白有多大区别#
+yaxs = "i",#
+col = "red",设置颜色#
+pch = 19)#pch指代点的形状，用数字表示，可查看帮助文档
+plot(cars$dist~cars$speed,#y~x，cars是R自带的数据#
+main="Relationship between car distance & speed",#标题#
+xlab = "Speed(miles per hour)",#x轴标题#
+ylab = "Distance travelled (miles)",#Y轴标题#
+xlim = c(0,30),#设置x轴的取值区间为0到30#
+ylim = c(0,140),#设置y轴的取值区间为0到140#
+xaxs = "i",#这里是设置x轴的风格，暂时没看明白有多大区别#
+yaxs = "i",#
+col = "red",#设置颜色#
+pch = 19)#pch指代点的形状，用数字表示，可查看帮助文档
+x<-rnorm(1000)#
+plot(density(x))#
+rug(x)
+x<-rnorm(1000)#
+plot(density(x), main="Density Distribution Along the x axis with Sample Capacity of 1000", xlab="Displacement", ylab="Relative Density")#
+rug(x)
+install.packages("maps")
+library(maps)
+maps
+library(mapdata)#
+map("worldHires","Canada”, xlim=c(-141,-53), ylim=c(40,85), col="gray90”, fill=TRUE)
+install.package("mapdata")
+library(mapdata)#
+map("worldHires","Canada”, xlim=c(-141,-53), ylim=c(40,85), col="gray90”, fill=TRUE)
+library(maps)#
+library(mapdata)#
+library(maptools)  #for shapefiles#
+library(scales)  #for transparency#
+pcontorta <- readShapePoly("pinucont.shp")   #layer of data for species range#
+samps <- read.csv("FieldSamples.csv")   #my data for sampling sites, contains a column of "lat" and a column of "lon" with GPS points in decimal degrees#
+map("worldHires","Canada", xlim=c(-140,-110),ylim=c(48,64), col="gray90", fill=TRUE)  #plot the region of Canada I want#
+map("worldHires","usa", xlim=c(-140,-110),ylim=c(48,64), col="gray95", fill=TRUE, add=TRUE)  #add the adjacent parts of the US; can't forget my homeland#
+plot(pcontorta, add=TRUE, xlim=c(-140,-110),ylim=c(48,64), col=alpha("darkgreen", 0.6), border=FALSE)  #plot the species range#
+points(samps$lon, samps$lat, pch=19, col="red", cex=0.5)  #plot my sample sites
+library(mapproj)#
+map(database= "world", ylim=c(45,90), xlim=c(-160,-50), col="grey80", fill=TRUE, projection="gilbert", orientation= c(90,0,225))#
+lon <- c(-72, -66, -107, -154)  #fake longitude vector#
+lat <- c(81.7, 64.6, 68.3, 60)  #fake latitude vector#
+coord <- mapproject(lon, lat, proj="gilbert", orientation=c(90, 0, 225))  #convert points to projected lat/long#
+points(coord, pch=20, cex=1.2, col="red")  #plot converted points
+add.pie(z=c(east, west), x=lon, y=lat, radius=sqrt(tot), col=c(alpha(“orange”, 0.6), alpha(“blue”, 0.6)), labels=”")
+library(RgoogleMaps)#
+lat <- c(48,64) #define our map's ylim#
+lon <- c(-140,-110) #define our map's xlim#
+center = c(mean(lat), mean(lon))  #tell what point to center on#
+zoom <- 5  #zoom: 1 = furthest out (entire globe), larger numbers = closer in#
+terrmap <- GetMap(center=center, zoom=zoom, maptype= "terrain", destfile = "terrain.png") #lots of visual options, just like google maps: maptype = c("roadmap", "mobile", "satellite", "terrain", "hybrid", "mapmaker-roadmap", "mapmaker-hybrid")
+samps$size <- "small"  #create a column indicating size of marker#
+samps$col <- "red"   #create a column indicating color of marker#
+samps$char <- ""   #normal Google Maps pinpoints will be drawn#
+mymarkers <- cbind.data.frame(samps$lat, samps$lon, samps$size, samps$col, samps$char)   #create the data frame by binding my data columns of GPS coordinates with the newly created columns#
+names(mymarkers) <- c("lat", "lon", "size", "col", "char")  #assign column headings#
+lat <- c(48,60)  #now we are plotting the map#
+lon <- c(-140,-110)#
+terrain_close <- GetMap.bbox(lonR= range(lon), latR= range(lat), center= c(49.7, -121.05), destfile= "terrclose.png", markers= mymarkers, zoom=13, maptype="terrain")
+x<-rnorm(1000)#
+plot(density(x), main="Density Distribution Along the x axis with Sample Capacity of 1000", xlab="Displacement", ylab="Relative Density")
+x<-rnorm(1000)#
+plot(density(x), main="Density Distribution Along the x axis with Sample Capacity of 1000", xlab="Displacement", ylab="Relative Density"); rug(x)
+x<-rnorm(1000)#
+plot(density(x), main="Density Distribution Simulation Along the x axis with Sample Capacity of 1000", xlab="Displacement", ylab="Relative Density"); rug(x)
+x<-rnorm(1000)#
+plot(density(x), main="Density Distribution Simulation Along the x axis with Sample Capacity of 1000", xlab="Displacement, sample capacity of 1000", ylab="Relative Density"); rug(x)
+x<-rnorm(1000)#
+plot(density(x), main="Density Distribution Simulation Along the x axis", xlab="Displacement, sample capacity of 1000", ylab="Relative Density"); rug(x)
+library(scatterplot3d)#
+scatterplot3d(iris$Petal.Width,iris$Sepal.Length,iris$Sepal.Width,pch=16,color=as.numeric(iris$Species))
+z <- seq(-10, 10, 0.01)      x <- cos(z)      y <- sin(z)      scatterplot3d(x, y, z, highlight.3d=TRUE, col.axis="blue",          col.grid="lightblue", main="scatterplot3d - 1", pch=20)
+z <- rnorm(5)      x <- rnorm(z)      y <- rnorm(x)      scatterplot3d(x, y, z, highlight.3d=TRUE, col.axis="blue",          col.grid="lightblue", main="scatterplot3d - 1", pch=20)
+z <- rnorm(5)      x <- rnorm(z)      y <- rnorm(x)      scatterplot3d(x, y, z, highlight.3d=TRUE, col.axis="black",          col.grid="gray", main="scatterplot3d - 1", pch=20)
+z <- rnorm(5)      x <- rnorm(z)      y <- rnorm(x)      scatterplot3d(x, y, z, highlight.3d=FALSE, col.axis="black",          col.grid="gray", main="Three Dimensional Diffusion Simulation", xlab="Displacement, x", ylab="Displacement, y", zlab="Displacement, z", pch=2)
+z <- rnorm(5)      x <- rnorm(z)      y <- rnorm(x)      scatterplot3d(x, y, z, highlight.3d=FALSE, col.axis="black",          col.grid="gray", main="Three Dimensional Diffusion Simulation", xlab="Displacement, x", ylab="Displacement, y", zlab="Displacement, z", pch=5)
+z <- rnorm(5)      x <- rnorm(z)      y <- rnorm(x)      scatterplot3d(x, y, z, highlight.3d=FALSE, col.axis="black",          col.grid="gray", main="Three Dimensional Diffusion Simulation", xlab="Displacement, x", ylab="Displacement, y", zlab="Displacement, z", pch=1)
+temp <- seq(-pi, 0, length = 50)      x <- c(rep(1, 50) %*% t(cos(temp)))      y <- c(cos(temp) %*% t(sin(temp)))      z <- c(sin(temp) %*% t(sin(temp)))      scatterplot3d(x, y, z, highlight.3d=TRUE,          col.axis="blue", col.grid="lightblue",          main="scatterplot3d - 2", pch=20)
+library(scatterplot3d)
+temp <- seq(-pi, 0, length = 50)      x <- c(rep(1, 50) %*% t(cos(temp)))      y <- c(cos(temp) %*% t(sin(temp)))      z <- c(sin(temp) %*% t(sin(temp)))      scatterplot3d(x, y, z, highlight.3d=TRUE,          col.axis="blue", col.grid="lightblue",          main="scatterplot3d - 2", pch=20)
+temp <- seq(-pi, 0, length = 50)      x <- c(rep(1, 50) %*% t(cos(temp)))      y <- c(cos(temp) %*% t(sin(temp)));z <- 10 * c(sin(temp) %*% t(sin(temp)))      color <- rep("green", length(x))      temp <- seq(-10, 10, 0.01)      x <- c(x, cos(temp))      y <- c(y, sin(temp))      z <- c(z, temp)      color <- c(color, rep("red", length(temp)))      scatterplot3d(x, y, z, color, pch=20, zlim=c(-2, 10),          main="scatterplot3d - 3")
+my.mat <- matrix(runif(25), nrow=5)      dimnames(my.mat) <- list(LETTERS[1:5], letters[11:15])      my.mat # the matrix we want to plot ...      s3d.dat <- data.frame(cols=as.vector(col(my.mat)),          rows=as.vector(row(my.mat)),          value=as.vector(my.mat))      scatterplot3d(s3d.dat, type="h", lwd=5, pch=" ",          x.ticklabs=colnames(my.mat), y.ticklabs=rownames(my.mat),          color=grey(25:1/40), main="scatterplot3d - 4")
+x <- rnorm(50)
+y <- rnorm(x^3)
+plot(x, y)
+my.mat <- matrix(runif(25), nrow=5)      dimnames(my.mat) <- list(LETTERS[1:5], letters[11:15])      my.mat # the matrix we want to plot ...      s3d.dat <- data.frame(cols=as.vector(col(my.mat)),          rows=as.vector(row(my.mat)),          value=as.vector(my.mat))      scatterplot3d(s3d.dat, type="h", lwd=5, pch=" ",          x.ticklabs=colnames(my.mat), y.ticklabs=rownames(my.mat),          color=grey(25:1/40), main="scatterplot3d - 4")
+temp <- seq(-pi, 0, length = 50)      x <- c(rep(1, 50) %*% t(cos(temp)))      y <- c(cos(temp) %*% t(sin(temp)));z <- 10 * c(sin(temp) %*% t(sin(temp)))      color <- rep("green", length(x))      temp <- seq(-10, 10, 0.01)      x <- c(x, cos(temp))      y <- c(y, sin(temp))      z <- c(z, temp)      color <- c(color, rep("red", length(temp)))      scatterplot3d(x, y, z, color, pch=20, zlim=c(-2, 10),          main="scatterplot3d - 3")
+library(ggplot)
+install.packages(ggplot)
+install.package(ggplot)
+install.packages(ggplot2)
+install.packages("ggplot")
+install.packages("ggplot2")
+library(ggplot2)
+temp <- seq(-pi, 0, length = 50)      x <- c(rep(1, 50) %*% t(cos(temp)))      y <- c(cos(temp) %*% t(sin(temp)));z <- 10 * c(sin(temp) %*% t(sin(temp)))      color <- rep("green", length(x))      temp <- seq(-10, 10, 0.01)      x <- c(x, cos(temp))      y <- c(y, sin(temp))      z <- c(z, temp)      color <- c(color, rep("red", length(temp)))      scatterplot3d(x, y, z, color, pch=20, zlim=c(-2, 10),          main="scatterplot3d - 3")
+library(scatterplot3d)
+temp <- seq(-pi, 0, length = 50)      x <- c(rep(1, 50) %*% t(cos(temp)))      y <- c(cos(temp) %*% t(sin(temp)));z <- 10 * c(sin(temp) %*% t(sin(temp)))      color <- rep("green", length(x))      temp <- seq(-10, 10, 0.01)      x <- c(x, cos(temp))      y <- c(y, sin(temp))      z <- c(z, temp)      color <- c(color, rep("red", length(temp)))      scatterplot3d(x, y, z, color, pch=20, zlim=c(-2, 10),          main="scatterplot3d - 3")
+temp <- seq(-pi, 0, length = 50)      x <- c(rep(1, 50) %*% t(cos(temp)))      y <- c(cos(temp) %*% t(sin(temp)))      z <- c(sin(temp) %*% t(sin(temp)))      scatterplot3d(x, y, z, highlight.3d=TRUE,          col.axis="blue", col.grid="lightblue",          main="scatterplot3d - 2", pch=20)
+z <- seq(-10, 10, 0.01)      x <- cos(z)      y <- sin(z)      scatterplot3d(x, y, z, highlight.3d=TRUE, col.axis="blue",          col.grid="lightblue", main="scatterplot3d - 1", pch=20)
+samps$size <- "small"  #create a column indicating size of marker#
+samps$col <- "red"   #create a column indicating color of marker#
+samps$char <- ""   #normal Google Maps pinpoints will be drawn#
+mymarkers <- cbind.data.frame(samps$lat, samps$lon, samps$size, samps$col, samps$char)   #create the data frame by binding my data columns of GPS coordinates with the newly created columns#
+names(mymarkers) <- c("lat", "lon", "size", "col", "char")  #assign column headings#
+lat <- c(48,60)  #now we are plotting the map#
+lon <- c(-140,-110)#
+terrain_close <- GetMap.bbox(lonR= range(lon), latR= range(lat), center= c(49.7, -121.05), destfile= "terrclose.png", markers= mymarkers, zoom=13, maptype="terrain")
+n <- 5000#
+x <- matrix(rnorm(n), ncol=2)#
+y <- matrix(rnorm(n, mean=2, sd=1), ncol=2)#
+smoothScatter(x,y)
+data(volcano)
+z <- 2 * volcano # Exaggerate the relief#
+x <- 10 * (1:nrow(z)) # 10 meter spacing (S to N)#
+y <- 10 * (1:ncol(z)) # 10 meter spacing (E to W)
+zlim <- range(y)#
+zlen <- zlim[2] - zlim[1] + 1#
+colorlut <- terrain.colors(zlen) # height color lookup table#
+col <- colorlut[ z-zlim[1]+1 ] # assign colors to heights
+persp3d(x, y, z, color = col, aspect = c(1.5, 1, 0.6))
+library(persp3d)
+install.pakcages("persp3d")
+zlim <- range(y)#
+zlen <- zlim[2] - zlim[1] + 1#
+colorlut <- terrain.colors(zlen) # height color lookup table#
+col <- colorlut[ z-zlim[1]+1 ] # assign colors to heights
+qqnorm(resid(fm), main="residuals rakit plot")
+scatterplot3d(mtcars$wt,mtcars$disp,mtcars$mpg,#
+pch=16, highlight.3d=TRUE, angle=20,#
+xlab="Weight",ylab="Displacement",zlab="Fuel Economy (mpg)",#
+type="h",#
+main="Relationships between car specifications")
+x <- seq(-2,3,0.05)#x在区间[-2,3]之间，取值隔0.05取一个#
+y <- seq(-1,7,0.05)#y在区间[-1,7]之间,取值隔0.05取一个#
+f <- function(x,y)#实现函数#
+  {#
+    x^4-2*x^2*y-2*x*y+2*y^2+4.5*x-4*y+4#
+  }#
+z <- outer(x,y,f)#让x,y在函数f的关系下作外积运算，形成网格，这样才能绘出三维图形#
+a <-  seq(0,100,10)#
+for (i in a)#
+{#
+  persp(x,y,z,theta=i,phi=30,expand=0.7,col="blue")#这里让观看的角度每隔一定时间变一次，theta应该是水平方向#的，phi是竖直方向上的角度#
+  Sys.sleep(3)#让R的运行暂停三秒#
+}
+x <- seq(-2,3,0.05)#x在区间[-2,3]之间，取值隔0.05取一个#
+y <- seq(-1,7,0.05)#y在区间[-1,7]之间,取值隔0.05取一个#
+f <- function(x,y)#实现函数#
+  {#
+    x^4-2*x^2*y-2*x*y+2*y^2+4.5*x-4*y+4#
+  }#
+z <- outer(x,y,f)#让x,y在函数f的关系下作外积运算，形成网格，这样才能绘出三维图形#
+a <-  seq(0,100,10)#
+for (i in a)#
+{#
+  persp(x,y,z,theta=i,phi=30,expand=0.7,col="blue")#这里让观看的角度每隔一定时间变一次，theta应该是水平方向#的，phi是竖直方向上的角度#
+  Sys.sleep(0.5)#让R的运行暂停三秒#
+}
+library(animation)#
+library(lattice)#
+ saveGIF({#
+    ani.options(interval=.1,#
+                convert = shQuote('d:/program files/ImageMagick-6.7.6-Q16/convert.exe'))#
+    for (i in seq(0,360,by=5)) {#
+        p <- wireframe(volcano, shade = TRUE,#
+                  aspect = c(61/87, 0.4),#
+                  light.source = c(10,0,10),#
+                  screen = list(z = i, x = -60)) #
+    print(p)#
+        }#
+})
+install.package("animation")
+library(animation)#
+library(lattice)#
+ saveGIF({#
+    ani.options(interval=.1,#
+                convert = shQuote('d:/program files/ImageMagick-6.7.6-Q16/convert.exe'))#
+    for (i in seq(0,360,by=5)) {#
+        p <- wireframe(volcano, shade = TRUE,#
+                  aspect = c(61/87, 0.4),#
+                  light.source = c(10,0,10),#
+                  screen = list(z = i, x = -60)) #
+    print(p)#
+        }#
+})
+install.packages("xlsx")
+install.packages("gdata")
+install.packages("forign")
+install.packages("foreign")
+diffraction <- read.xlsx("diffraction.xlsx", 1)
+library(xlsx)
+diffraction <- read.xlsx("diffraction.xlsx", 1)
+diffraction <- read.xlsx("/Users/apple/Desktop/diffraction.xlsx", 1)
+show(diffraction)
+plot(diffraction)
+plor(mtcars$wt, mtcars$mpg)
+plot(mtcars$wt, mtcars$mpg)
+library(ggplot2)
+qplot(mtcars$wt, mtcars$mpg)
+qplot(wt, mpg, data=mtcars)
+plot(pressure$temperature, pressure$pressure, type="1")
+plot(pressure$temperature, pressure$pressure, type="l")
+plot(pressure$temperature, pressure$pressure, type="b")
+plot(pressure$temperature, pressure$pressure, type="b", col="red")
+qplot(pressure$temperature, pressure$pressure, geom="line")
+qplot(pressure$temperature, pressure$pressure, geom=c("line", "point"))
+barplot(mtcars$cyl)
+table(mtcars$cyl)
+table(diffraction)
+barplot(table(mtcars$cyl))
+qplot(BOD$Time, BOD$demand, geom="bar", stat="identity")
+qplot(factor(BOD$Time), BOD$demand, geom="bar", stat="identity")
+x <- rnorm(50)
+y <- rnorm(x)
+qplot(x, y)
+library(qplot)
+plot(x, y)
+end
+library(gcookbook)
+install.library ("gcookbook")
+install("gcookbook")
+install.packages("gcookbook")
+library("gcookbook")
+upc <- subset(uspopchange, rank(Change)>40)
+upc
+ggplot(upc, aes(x=Abb, y=Change, fill=Region))+geom_bar(stat="identity")
+library(ggplot)
+install.packages(ggplot)
+install.packages("ggplot")
+install.packages("qplot")
+install.packages("ggplot2")
+ggplot(upc, aes(x=Abb, y=Change, fill=Region))+geom_bar(stat="identity")
+library(ggplot2)
+ggplot(upc, aes(x=Abb, y=Change, fill=Region))+geom_bar(stat="identity")
+now we finished the initiallation and soon we will create a simply scatter plot with R; qplot(mtcars$wt, mtcars$mpg); #here we are to create a line graph with R; plot(pressure$temperature, pressure$pressure, type="1"); points(pressure$temperature, pressure$pressure); lines(pressure$temperature, pressure$pressure/2, col="red"); points(pressure$temperature, pressure$pressure/2, col="blue")
+qplot(mtcars$wt, mtcars$mpg); plot(pressure$temperature, pressure$pressure, type="1"); points(pressure$temperature, pressure$pressure); lines(pressure$temperature, pressure$pressure/2, col="red"); points(pressure$temperature, pressure$pressure/2, col="blue")
+qplot(mtcars$wt, mtcars$mpg); plot(pressure$temperature, pressure$pressure, type="l"); points(pressure$temperature, pressure$pressure); lines(pressure$temperature, pressure$pressure/2, col="red"); points(pressure$temperature, pressure$pressure/2, col="blue")
+library(qplot)
+library(ggplot2)
+qplot(mtcars$wt, mtcars$mpg); plot(pressure$temperature, pressure$pressure, type="l"); points(pressure$temperature, pressure$pressure); lines(pressure$temperature, pressure$pressure/2, col="red"); points(pressure$temperature, pressure$pressure/2, col="blue")
+exit
+install.packages("RSNNS")
+library(RSNNS)#
+data(iris)
+library("Rcpp")
+iris = iris[sample(1:nrow(iris),length(1:nrow(iris))),1:ncol(iris)]
+irisValues= iris[,1:4]
+irisTargets = decodeClassLabels(iris[,5])
+iris = splitForTrainingAndTest(irisValues, irisTargets, ratio=0.15)
+iris = normTrainingAndTestSet(iris)
+model = mlp(iris$inputsTrain, iris$targetsTrain, size=5, learnFunc="Quickprop", learnFuncParams=c(0.1, 2.0, 0.0001, 0.1),maxit=100, inputsTest=iris$inputsTest, targetsTest=iris$targetsTest)
+predictions = predict(model,iris$inputsTest)
+confusionMatrix(iris$targetsTest,predictions)
+library(RSNNS)#
+data(iris)
+confusionMatrix(iris$targetsTest,predictions)
+> install.packages("RSNNS")#
+> library(RSNNS)#
+> data(iris)#
+> library("Rcpp")#
+> iris = iris[sample(1:nrow(iris),length(1:nrow(iris))),1:ncol(iris)]#
+> irisValues= iris[,1:4]#
+> irisTargets = decodeClassLabels(iris[,5])#
+> iris = splitForTrainingAndTest(irisValues, irisTargets, ratio=0.15)#
+> iris = normTrainingAndTestSet(iris)#
+> model = mlp(iris$inputsTrain, iris$targetsTrain, size=5, learnFunc="Quickprop", learnFuncParams=c(0.1, 2.0, 0.0001, 0.1),maxit=100, inputsTest=iris$inputsTest, targetsTest=iris$targetsTest)#
+> predictions = predict(model,iris$inputsTest)#
+> confusionMatrix(iris$targetsTest,predictions)
+install.packages("RSNNS");#
+library(RSNNS);#
+data(iris);#
+library("Rcpp");#
+iris = iris[sample(1:nrow(iris),length(1:nrow(iris))),1:ncol(iris)];#
+irisValues= iris[,1:4];#
+irisTargets = decodeClassLabels(iris[,5]);#
+iris = splitForTrainingAndTest(irisValues, irisTargets, ratio=0.15);#
+iris = normTrainingAndTestSet(iris);#
+model = mlp(iris$inputsTrain, iris$targetsTrain, size=5, learnFunc="Quickprop", learnFuncParams=c(0.1, 2.0, 0.0001, 0.1),maxit=100, inputsTest=iris$inputsTest, targetsTest=iris$targetsTest);#
+predictions = predict(model,iris$inputsTest);#
+confusionMatrix(iris$targetsTest,predictions);
+install.packages("RSNNS");#
+library(RSNNS);#
+data(iris);#
+library("Rcpp");#
+iris = iris[sample(1:nrow(iris),length(1:nrow(iris))),1:ncol(iris)];#
+irisValues= iris[,1:4];#
+irisTargets = decodeClassLabels(iris[,5]);#
+iris = splitForTrainingAndTest(irisValues, irisTargets, ratio=0.15);#
+iris = normTrainingAndTestSet(iris);#
+model = mlp(iris$inputsTrain, iris$targetsTrain,size=5,learnFunc="Quickprop",learnFuncParams=c(0.1, 2.0, 0.0001, 0.1),maxit=100, inputsTest=iris$inputsTest,targetsTest=iris$targetsTest);#
+predictions = predict(model,iris$inputsTest);#
+confusionMatrix(iris$targetsTest,predictions);
+library(animation)
+install.packages("rgl")
+demo(rgl_animation )
+demo()
+demo(persp)
+demo()
+demo(image)
+demo(graphic capablities)
+demo(graphics capablities)
+demo(graphics capabilities)
+demo(graphics)
+demo(Japanese)
+demo(plotmath)
+setwd("/Users/apple/projects/R")
+update.packages()
+help.start()
+install.packages("vcd")
+library(vcd)
+help(Arthritis)
+example(Arthritis)
+create a simple matrix
+y <- mateix(1:20, nrow=5, ncol=4)
+y <- matrix(1:20, nrow=5, ncol=4)
+y
+cells <- c(1,26,24,78)
+rnames <- c("R1", "R2")
+cnames <- c("C1", "C2")
+mymatrix <- matrix(cells, nrow=2, ncol=2, byrow=TRUE, dimnames=list(rnames, cnames))
+mymatrix
+mymatrix <- matrix(cells, nrow=2, ncol=2, byrow=FALSE, dimnames=list(rnames, cnames))
+mymatrix
+the use of label
+x <- matrix(1:10, nrow=2)
+x
+x[2, ]
+x[,2]
+x[1,4]
+x[1, c(4,5)]
+it is usually better to use matrix if the data dimension is less than 2, when the dimension exceeding 2, you might try array instead
+now we create an example with array
+dim1 <- c("A1", A2)
+dim1 <- c("A1", "A2")
+dim2 <- c("B1", "B2", "B3")
+dim3 <- c("C1", "C2", "C3", "C4")
+z <- array(1:24, c(2,3,4), dimnames=list(dim1, dim2, dim3))
+z
+use label to locate a data
+z[1,3,5]
+z[1,2,4]
+data frame
+a data frame example with patient ID
+patientID <- c(1,2,3,4)
+age <- c(24, 35, 40, 70)
+diabetes <- c("Type1", "Type2", "Type1", "Type1")
+status <- c("Poor", "Improved", "Excellent", "Poor")
+patientdata <- data.frame(patientID, age, diabetes, status, )
+patientdata <- data.frame(patientID, age, diabetes, status )
+patientdata
+pick up a certain data from the data frame
+patientdata[1:2]
+patientdata[c("diabetes", "age")]
+patientdata[c("diabetes", "status")]
+patientdata$age
+patientdata[c("age")]
+so the sign $ here means picking up the data as a vector
+another tryout
+table(patientdata$age, patientdata$status)
+which gives a table
+it might be boring and tedious to use $ sign each time, we can use attach() and detach(), or with() to simplify the code
+summmary(mtcars$mpg)
+summary(mtcars$mpg)
+library(ggplot2)
+qplot(mtcars$mpg, mtcars$disp)
+qplot(mtcars$mpg, mtcars$wt)
+or you can write the code as this
+attach(mtcars)
+summary(mpg)
+qplot(mpg, disp)
+qplot(mpg, wt)
+detach(cars)
+detach(mtcars)
+qplot(mtcars)
+another way is to use function with()
+with(mtcars, {summary(mpg, disp, wt), qplot(wpg, disp)})
+with(mtcars, {
+summary(mps, disp, wt)
+summary(mpg, disp, wt)
+qplot(mpg, wt)
+})
+with(mtcars, {
+summary(mpg, disp, wt)
+qplot(mpg, wt)
+})
+next we will take a bit about factor() in R

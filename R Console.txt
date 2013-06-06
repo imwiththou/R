@@ -1,0 +1,304 @@
+
+R version 2.15.3 (2013-03-01) -- "Security Blanket"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+Platform: x86_64-apple-darwin9.8.0/x86_64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[R.app GUI 1.53 (6451) x86_64-apple-darwin9.8.0]
+
+[Workspace restored from /Users/apple/.RData]
+[History restored from /Users/apple/.Rapp.history]
+
+> setwd("/Users/apple/projects/R")
+> update.packages()
+cluster :
+ Version 1.14.3 installed in /Library/Frameworks/R.framework/Versions/2.15/Resources/library 
+ Version 1.14.4 available at http://cran.stat.nus.edu.sg
+Update (y/N/c)?  y
+KernSmooth :
+ Version 2.23-9 installed in /Library/Frameworks/R.framework/Versions/2.15/Resources/library 
+ Version 2.23-10 available at http://cran.stat.nus.edu.sg
+Update (y/N/c)?  y
+Matrix :
+ Version 1.0-11 installed in /Library/Frameworks/R.framework/Versions/2.15/Resources/library 
+ Version 1.0-12 available at http://cran.stat.nus.edu.sg
+Update (y/N/c)?  y
+nnet :
+ Version 7.3-5 installed in /Library/Frameworks/R.framework/Versions/2.15/Resources/library 
+ Version 7.3-6 available at http://cran.stat.nus.edu.sg
+Update (y/N/c)?  y
+rpart :
+ Version 4.1-0 installed in /Library/Frameworks/R.framework/Versions/2.15/Resources/library 
+ Version 4.1-1 available at http://cran.stat.nus.edu.sg
+Update (y/N/c)?  y
+XML :
+ Version 3.95-0.2 installed in /Library/Frameworks/R.framework/Versions/2.15/Resources/library 
+ Version 3.96-1.1 available at http://cran.stat.nus.edu.sg
+Update (y/N/c)?  y
+trying URL 'http://cran.stat.nus.edu.sg/bin/macosx/leopard/contrib/2.15/cluster_1.14.4.tgz'
+Content type 'application/x-gzip' length 550133 bytes (537 Kb)
+opened URL
+==================================================
+downloaded 537 Kb
+
+trying URL 'http://cran.stat.nus.edu.sg/bin/macosx/leopard/contrib/2.15/KernSmooth_2.23-10.tgz'
+Content type 'application/x-gzip' length 109733 bytes (107 Kb)
+opened URL
+==================================================
+downloaded 107 Kb
+
+trying URL 'http://cran.stat.nus.edu.sg/bin/macosx/leopard/contrib/2.15/Matrix_1.0-12.tgz'
+Content type 'application/x-gzip' length 4067618 bytes (3.9 Mb)
+opened URL
+==================================================
+downloaded 3.9 Mb
+
+trying URL 'http://cran.stat.nus.edu.sg/bin/macosx/leopard/contrib/2.15/nnet_7.3-6.tgz'
+Content type 'application/x-gzip' length 120918 bytes (118 Kb)
+opened URL
+==================================================
+downloaded 118 Kb
+
+trying URL 'http://cran.stat.nus.edu.sg/bin/macosx/leopard/contrib/2.15/rpart_4.1-1.tgz'
+Content type 'application/x-gzip' length 951497 bytes (929 Kb)
+opened URL
+==================================================
+downloaded 929 Kb
+
+trying URL 'http://cran.stat.nus.edu.sg/bin/macosx/leopard/contrib/2.15/XML_3.96-1.1.tgz'
+Content type 'application/x-gzip' length 2019210 bytes (1.9 Mb)
+opened URL
+==================================================
+downloaded 1.9 Mb
+
+
+The downloaded binary packages are in
+	/var/folders/cg/8xy16t7x6m5_b3c_b_mdq90m0000gn/T//RtmpobNSJG/downloaded_packages
+> help.start()
+starting httpd help server ... done
+If the browser launched by '/usr/bin/open' is already running, it is *not* restarted, and you must
+    switch to its window.
+Otherwise, be patient ...
+> install.packages("vcd")
+trying URL 'http://cran.stat.nus.edu.sg/bin/macosx/leopard/contrib/2.15/vcd_1.2-13.tgz'
+Content type 'application/x-gzip' length 957906 bytes (935 Kb)
+opened URL
+==================================================
+downloaded 935 Kb
+
+
+The downloaded binary packages are in
+	/var/folders/cg/8xy16t7x6m5_b3c_b_mdq90m0000gn/T//RtmpobNSJG/downloaded_packages
+> library(vcd)
+Loading required package: MASS
+Loading required package: grid
+Loading required package: colorspace
+> help(Arthritis)
+> example(Arthritis)
+
+Arthrt> data("Arthritis")
+
+Arthrt> art <- xtabs(~ Treatment + Improved, data = Arthritis, subset = Sex == "Female")
+
+Arthrt> art
+         Improved
+Treatment None Some Marked
+  Placebo   19    7      6
+  Treated    6    5     16
+
+Arthrt> mosaic(art, gp = shading_Friendly)
+Hit <Return> to see next plot: 
+
+Arthrt> mosaic(art, gp = shading_max)
+Hit <Return> to see next plot: 
+> 
+> #create a simple matrix
+> y <- mateix(1:20, nrow=5, ncol=4)
+Error: could not find function "mateix"
+> y <- matrix(1:20, nrow=5, ncol=4)
+> y
+     [,1] [,2] [,3] [,4]
+[1,]    1    6   11   16
+[2,]    2    7   12   17
+[3,]    3    8   13   18
+[4,]    4    9   14   19
+[5,]    5   10   15   20
+> cells <- c(1,26,24,78)
+> rnames <- c("R1", "R2")
+> cnames <- c("C1", "C2")
+> mymatrix <- matrix(cells, nrow=2, ncol=2, byrow=TRUE, dimnames=list(rnames, cnames))
+> 
+> mymatrix
+   C1 C2
+R1  1 26
+R2 24 78
+> mymatrix <- matrix(cells, nrow=2, ncol=2, byrow=FALSE, dimnames=list(rnames, cnames))
+> mymatrix
+   C1 C2
+R1  1 24
+R2 26 78
+> #the use of label
+> x <- matrix(1:10, nrow=2)
+> x
+     [,1] [,2] [,3] [,4] [,5]
+[1,]    1    3    5    7    9
+[2,]    2    4    6    8   10
+> x[2, ]
+[1]  2  4  6  8 10
+> x[,2]
+[1] 3 4
+> x[1,4]
+[1] 7
+> x[1, c(4,5)]
+[1] 7 9
+> #it is usually better to use matrix if the data dimension is less than 2, when the dimension exceeding 2, you might try array instead
+> #now we create an example with array
+> dim1 <- c("A1", A2)
+Error: object 'A2' not found
+> dim1 <- c("A1", "A2")
+> dim2 <- c("B1", "B2", "B3")
+> dim3 <- c("C1", "C2", "C3", "C4")
+> z <- array(1:24, c(2,3,4), dimnames=list(dim1, dim2, dim3))
+> z
+, , C1
+
+   B1 B2 B3
+A1  1  3  5
+A2  2  4  6
+
+, , C2
+
+   B1 B2 B3
+A1  7  9 11
+A2  8 10 12
+
+, , C3
+
+   B1 B2 B3
+A1 13 15 17
+A2 14 16 18
+
+, , C4
+
+   B1 B2 B3
+A1 19 21 23
+A2 20 22 24
+
+> #use label to locate a data
+> z[1,3,5]
+Error: subscript out of bounds
+> z[1,2,4]
+[1] 21
+> #data frame
+> #a data frame example with patient ID
+> patientID <- c(1,2,3,4)
+> age <- c(24, 35, 40, 70)
+> diabetes <- c("Type1", "Type2", "Type1", "Type1")
+> status <- c("Poor", "Improved", "Excellent", "Poor")
+> patientdata <- data.frame(patientID, age, diabetes, status, )
+Error in data.frame(patientID, age, diabetes, status, ) : 
+  argument is missing, with no default
+> patientdata <- data.frame(patientID, age, diabetes, status )
+> patientdata
+  patientID age diabetes    status
+1         1  24    Type1      Poor
+2         2  35    Type2  Improved
+3         3  40    Type1 Excellent
+4         4  70    Type1      Poor
+> #pick up a certain data from the data frame
+> patientdata[1:2]
+  patientID age
+1         1  24
+2         2  35
+3         3  40
+4         4  70
+> patientdata[c("diabetes", "age")]
+  diabetes age
+1    Type1  24
+2    Type2  35
+3    Type1  40
+4    Type1  70
+> patientdata[c("diabetes", "status")]
+  diabetes    status
+1    Type1      Poor
+2    Type2  Improved
+3    Type1 Excellent
+4    Type1      Poor
+> patientdata$age
+[1] 24 35 40 70
+> patientdata[c("age")]
+  age
+1  24
+2  35
+3  40
+4  70
+> #so the sign $ here means picking up the data as a vector
+> #another tryout
+> table(patientdata$age, patientdata$status)
+    
+     Excellent Improved Poor
+  24         0        0    1
+  35         0        1    0
+  40         1        0    0
+  70         0        0    1
+> #which gives a table
+> #it might be boring and tedious to use $ sign each time, we can use attach() and detach(), or with() to simplify the code
+> summmary(mtcars$mpg)
+Error: could not find function "summmary"
+> summary(mtcars$mpg)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  10.40   15.42   19.20   20.09   22.80   33.90 
+> library(ggplot2)
+> qplot(mtcars$mpg, mtcars$disp)
+Hit <Return> to see next plot: 
+> qplot(mtcars$mpg, mtcars$wt)
+Hit <Return> to see next plot: 
+> #or you can write the code as this
+> attach(mtcars)
+The following object(s) are masked from 'package:ggplot2':
+
+    mpg
+> summary(mpg)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  10.40   15.42   19.20   20.09   22.80   33.90 
+> qplot(mpg, disp)
+Hit <Return> to see next plot: 
+> qplot(mpg, wt)
+Hit <Return> to see next plot: 
+> detach(cars)
+Error in detach(cars) : invalid 'name' argument
+> detach(mtcars)
+> qplot(mtcars)
+Hit <Return> to see next plot: 
+Don't know how to automatically pick scale for object of type data.frame. Defaulting to continuous
+Error: stat_bin requires the following missing aesthetics: x
+> #another way is to use function with()
+> with(mtcars, {summary(mpg, disp, wt), qplot(wpg, disp)})
+Error: unexpected ',' in "with(mtcars, {summary(mpg, disp, wt),"
+> with(mtcars, {
++ summary(mps, disp, wt)
++ summary(mpg, disp, wt)
++ qplot(mpg, wt)
++ })
+Error in summary(mps, disp, wt) : object 'mps' not found
+> with(mtcars, {
++ summary(mpg, disp, wt)
++ qplot(mpg, wt)
++ })
+Hit <Return> to see next plot: 
+> #next we will take a bit about factor() in R
+> 
