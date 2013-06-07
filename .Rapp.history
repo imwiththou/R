@@ -1,3 +1,120 @@
+source("http://bioconductor.org/biocLite.R")
+biocLite("limma")
+biocLite(c("GenomicFeatures","AnnotationDbi"))
+source("http://bioconductor.org/biocLite.R")
+biocLite("BioUpgrade")
+source("http://bioconductor.org/biocLite.R")
+biocLite("limma")
+source("http://bioconductor.org/biocLite.R")
+biocLite("limma")
+biocLite(c("GenomicFeatures","AnnotationDbi"))
+biocLite(character())
+biocLite()
+biocLite(character())
+pkgs
+CalculateSampleCovariance <- function(x, y, verbose = TRUE) {#
+  # Computes the sample covariance between two vectors.#
+  ##
+  # Args:#
+  #   x: One of two vectors whose sample covariance is to be calculated.#
+  #   y: The other vector. x and y must have the same length, greater than one,#
+  #      with no missing values.#
+  #   verbose: If TRUE, prints sample covariance; if not, not. Default is TRUE.#
+  ##
+  # Returns:#
+  #   The sample covariance between x and y.#
+  n <- length(x)#
+  # Error handling#
+  if (n <= 1 || n != length(y)) {#
+    stop("Arguments x and y have invalid lengths: ",#
+         length(x), " and ", length(y), ".")#
+  }#
+  if (TRUE %in% is.na(x) || TRUE %in% is.na(y)) {#
+    stop(" Arguments x and y must not have missing values.")#
+  }#
+  covariance <- var(x, y)#
+  if (verbose)#
+    cat("Covariance = ", round(covariance, 4), ".\n", sep = "")#
+  return(covariance)#
+}
+x <- rnorm(50)
+y <- rnorm(x)
+plot(x, y)
+ls()
+rm(x,y)
+x <- 1:20
+w <- 1+sqrt(x)/2
+dummy <- data.frame(x=x, y=x+rnorm(x)*w)
+dummy
+fm <- lm(y~x, data=dummy)
+summary(fm)
+fm1 <- lm(y~x, data=dummy, weight=1/w^2)
+summary(fm1)
+attach(dummy)
+lrf <- lowess(x, y)
+plot(x,y)
+lines(x, lrf$y)
+abline(0, 1, lty=3)
+abline(coef(fm))
+abline(coef(fm1), col ="red")
+detach()
+plot(fitted(fm),resid(fm),xlab="fitted values", ylab="residuals", main="residuals vs fitted")
+qqnorm(resid(fm), main="residuals rakit plot")
+rm(fm, fm1, lrf, x, dummy)
+filepath <- system.file("data", "morley.tab",package="datasets")
+filepath
+file.show(filepath)
+mm <- read.table(filepath)
+mm
+mm$Expt <- factor(mm$Expt)
+mm$Rum <- factor(mm$Rum)
+attach(mm)
+plot(Expt, Speed, main="speed of light data", xlab="experiment No.")
+mm$Run <- factor(mm$Run)
+attach(mm)
+plot(Expt, Speed, main="speed of light data", xlab="experiment No.")
+fm
+plot(morley)
+x <- rnorm(20);
+y <- rnorm(x^2);
+show(x, y)
+plot(x, y, main="diffusion example", xlab="x position", ylab="y position")
+Sim.DiffProc-package()
+Sim.DiffProc
+install Sim.DiffProc-package()
+install Sim.DiffProc
+plot(morley)
+install rgl
+sudo R CMD INSTALL rgl_0.81.tar.gz
+fn = function(x, y) {#
+    x^2 + y^2 - 10 * (cos(2 * pi * x) + cos(2 * pi * y)) + 20#
+}#
+a = 5#
+x = seq(-a, a, 0.05)#
+y = seq(-a, a, 0.05)#
+z = outer(x, y, fn)#
+persp(x, y, z)#
+library(rgl)#
+zorder = rank(z)#
+persp3d(x, y, z, col = rainbow(as.integer(max(zorder)))[zorder])
+library(scatterplot3d)#
+scatterplot3d(iris$Petal.Width,iris$Sepal.Length,iris$Sepal.Width,pch=16,color=as.numeric(iris$Species))
+sudo R CMD INSTALL rgl_0.81.tar.gz
+library(scatterplot3d)#
+scatterplot3d(iris$Petal.Width,iris$Sepal.Length,iris$Sepal.Width,pch=16,color=as.numeric(iris$Species))
+fn = function(x, y) {#
+    x^2 + y^2 - 10 * (cos(2 * pi * x) + cos(2 * pi * y)) + 20#
+}#
+a = 5#
+x = seq(-a, a, 0.05)#
+y = seq(-a, a, 0.05)#
+z = outer(x, y, fn)#
+persp(x, y, z)#
+library(rgl)#
+zorder = rank(z)#
+persp3d(x, y, z, col = rainbow(as.integer(max(zorder)))[zorder])
+library(scatterplot3d)#
+scatterplot3d(iris$Petal.Width,iris$Sepal.Length,iris$Sepal.Width,pch=16,color=as.numeric(iris$Species))
 data(volcano)
 z <- 2 * volcano # Exaggerate the relief#
 x <- 10 * (1:nrow(z)) # 10 meter spacing (S to N)#
@@ -374,84 +491,14 @@ demo(graphics capabilities)
 demo(graphics)
 demo(Japanese)
 demo(plotmath)
+about the factors in R
 setwd("/Users/apple/projects/R")
-update.packages()
-help.start()
-install.packages("vcd")
-library(vcd)
-help(Arthritis)
-example(Arthritis)
-create a simple matrix
-y <- mateix(1:20, nrow=5, ncol=4)
-y <- matrix(1:20, nrow=5, ncol=4)
-y
-cells <- c(1,26,24,78)
-rnames <- c("R1", "R2")
-cnames <- c("C1", "C2")
-mymatrix <- matrix(cells, nrow=2, ncol=2, byrow=TRUE, dimnames=list(rnames, cnames))
-mymatrix
-mymatrix <- matrix(cells, nrow=2, ncol=2, byrow=FALSE, dimnames=list(rnames, cnames))
-mymatrix
-the use of label
-x <- matrix(1:10, nrow=2)
-x
-x[2, ]
-x[,2]
-x[1,4]
-x[1, c(4,5)]
-it is usually better to use matrix if the data dimension is less than 2, when the dimension exceeding 2, you might try array instead
-now we create an example with array
-dim1 <- c("A1", A2)
-dim1 <- c("A1", "A2")
-dim2 <- c("B1", "B2", "B3")
-dim3 <- c("C1", "C2", "C3", "C4")
-z <- array(1:24, c(2,3,4), dimnames=list(dim1, dim2, dim3))
-z
-use label to locate a data
-z[1,3,5]
-z[1,2,4]
-data frame
-a data frame example with patient ID
-patientID <- c(1,2,3,4)
-age <- c(24, 35, 40, 70)
 diabetes <- c("Type1", "Type2", "Type1", "Type1")
+diaetes <-factor(diabetes)
 status <- c("Poor", "Improved", "Excellent", "Poor")
-patientdata <- data.frame(patientID, age, diabetes, status, )
-patientdata <- data.frame(patientID, age, diabetes, status )
-patientdata
-pick up a certain data from the data frame
-patientdata[1:2]
-patientdata[c("diabetes", "age")]
-patientdata[c("diabetes", "status")]
-patientdata$age
-patientdata[c("age")]
-so the sign $ here means picking up the data as a vector
-another tryout
-table(patientdata$age, patientdata$status)
-which gives a table
-it might be boring and tedious to use $ sign each time, we can use attach() and detach(), or with() to simplify the code
-summmary(mtcars$mpg)
-summary(mtcars$mpg)
-library(ggplot2)
-qplot(mtcars$mpg, mtcars$disp)
-qplot(mtcars$mpg, mtcars$wt)
-or you can write the code as this
-attach(mtcars)
-summary(mpg)
-qplot(mpg, disp)
-qplot(mpg, wt)
-detach(cars)
-detach(mtcars)
-qplot(mtcars)
-another way is to use function with()
-with(mtcars, {summary(mpg, disp, wt), qplot(wpg, disp)})
-with(mtcars, {
-summary(mps, disp, wt)
-summary(mpg, disp, wt)
-qplot(mpg, wt)
-})
-with(mtcars, {
-summary(mpg, disp, wt)
-qplot(mpg, wt)
-})
-next we will take a bit about factor() in R
+status <-factor(status, ordered=TRUE)
+patientID <- c(1,2,3,4)
+age <- c(24,35,60,33)
+patientdata <- data.frame(patientID, age, status, diabetes)
+str(patientdata)
+summary(patientdata)
