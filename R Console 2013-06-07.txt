@@ -1,0 +1,49 @@
+
+R version 2.15.3 (2013-03-01) -- "Security Blanket"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+Platform: x86_64-apple-darwin9.8.0/x86_64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[R.app GUI 1.53 (6451) x86_64-apple-darwin9.8.0]
+
+[Workspace restored from /Users/apple/.RData]
+[History restored from /Users/apple/.Rapp.history]
+
+> #about the factors in R
+> setwd("/Users/apple/projects/R")
+> diabetes <- c("Type1", "Type2", "Type1", "Type1")
+> diaetes <-factor(diabetes)
+> status <- c("Poor", "Improved", "Excellent", "Poor")
+> status <-factor(status, ordered=TRUE)
+> patientID <- c(1,2,3,4)
+> age <- c(24,35,60,33)
+> patientdata <- data.frame(patientID, age, status, diabetes)
+> str(patientdata)
+'data.frame':	4 obs. of  4 variables:
+ $ patientID: num  1 2 3 4
+ $ age      : num  24 35 60 33
+ $ status   : Ord.factor w/ 3 levels "Excellent"<"Improved"<..: 3 2 1 3
+ $ diabetes : Factor w/ 2 levels "Type1","Type2": 1 2 1 1
+> summary(patientdata)
+   patientID         age              status   diabetes
+ Min.   :1.00   Min.   :24.00   Excellent:1   Type1:3  
+ 1st Qu.:1.75   1st Qu.:30.75   Improved :1   Type2:1  
+ Median :2.50   Median :34.00   Poor     :2            
+ Mean   :2.50   Mean   :38.00                          
+ 3rd Qu.:3.25   3rd Qu.:41.25                          
+ Max.   :4.00   Max.   :60.00                          
+> 
