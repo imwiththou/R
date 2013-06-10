@@ -1,86 +1,3 @@
-source("http://bioconductor.org/biocLite.R")
-biocLite("BioUpgrade")
-source("http://bioconductor.org/biocLite.R") biocLite("limma")
-source("http://bioconductor.org/biocLite.R")
-biocLite("limma")
-biocLite(c("GenomicFeatures","AnnotationDbi"))
-source("http://bioconductor.org/biocLite.R")
-biocLite("BioUpgrade")
-source("http://bioconductor.org/biocLite.R")
-biocLite("limma")
-source("http://bioconductor.org/biocLite.R")
-biocLite("limma")
-biocLite(c("GenomicFeatures","AnnotationDbi"))
-biocLite(character())
-biocLite()
-biocLite(character())
-pkgs
-CalculateSampleCovariance <- function(x, y, verbose = TRUE) {#
-  # Computes the sample covariance between two vectors.#
-  ##
-  # Args:#
-  #   x: One of two vectors whose sample covariance is to be calculated.#
-  #   y: The other vector. x and y must have the same length, greater than one,#
-  #      with no missing values.#
-  #   verbose: If TRUE, prints sample covariance; if not, not. Default is TRUE.#
-  ##
-  # Returns:#
-  #   The sample covariance between x and y.#
-  n <- length(x)#
-  # Error handling#
-  if (n <= 1 || n != length(y)) {#
-    stop("Arguments x and y have invalid lengths: ",#
-         length(x), " and ", length(y), ".")#
-  }#
-  if (TRUE %in% is.na(x) || TRUE %in% is.na(y)) {#
-    stop(" Arguments x and y must not have missing values.")#
-  }#
-  covariance <- var(x, y)#
-  if (verbose)#
-    cat("Covariance = ", round(covariance, 4), ".\n", sep = "")#
-  return(covariance)#
-}
-x <- rnorm(50)
-y <- rnorm(x)
-plot(x, y)
-ls()
-rm(x,y)
-x <- 1:20
-w <- 1+sqrt(x)/2
-dummy <- data.frame(x=x, y=x+rnorm(x)*w)
-dummy
-fm <- lm(y~x, data=dummy)
-summary(fm)
-fm1 <- lm(y~x, data=dummy, weight=1/w^2)
-summary(fm1)
-attach(dummy)
-lrf <- lowess(x, y)
-plot(x,y)
-lines(x, lrf$y)
-abline(0, 1, lty=3)
-abline(coef(fm))
-abline(coef(fm1), col ="red")
-detach()
-plot(fitted(fm),resid(fm),xlab="fitted values", ylab="residuals", main="residuals vs fitted")
-qqnorm(resid(fm), main="residuals rakit plot")
-rm(fm, fm1, lrf, x, dummy)
-filepath <- system.file("data", "morley.tab",package="datasets")
-filepath
-file.show(filepath)
-mm <- read.table(filepath)
-mm
-mm$Expt <- factor(mm$Expt)
-mm$Rum <- factor(mm$Rum)
-attach(mm)
-plot(Expt, Speed, main="speed of light data", xlab="experiment No.")
-mm$Run <- factor(mm$Run)
-attach(mm)
-plot(Expt, Speed, main="speed of light data", xlab="experiment No.")
-fm
-plot(morley)
-x <- rnorm(20);
-y <- rnorm(x^2);
-show(x, y)
 plot(x, y, main="diffusion example", xlab="x position", ylab="y position")
 Sim.DiffProc-package()
 Sim.DiffProc
@@ -495,4 +412,69 @@ demo(graphics)
 demo(Japanese)
 demo(plotmath)
 setwd("/Users/apple/projects/R")
-about the factors
+list: list is one of the most complex data type in R. a list is the set of some components with a specific coordination. List allows you to integrate many components under one component, even it might not be relevant, for example, the components in a list can be some vectors, some matrixes or data frames, even combination of other lists.
+g <- "first list"
+h <- c(24, 25, 95, 81)
+j <- matrix(1:10, nrow=5)
+k <- c("one", "two", "three")
+mylist <- list(title=g, ages=h,j,k)
+create the list
+mylist
+mylist[[2]]
+mylist[["ages"]]
+the notation [[2]] here means 'output the second component'
+data input
+first, use keyboard
+second, use txt
+third use excel(csv)
+graphic sketch
+attach(mtcars)
+plot(wt, mpg)
+abline(lm(mpg-wt))
+abline(lm(mpg~wt))
+title("regression")
+detach(mtcars)
+pdf("graph.pdf")
+attach(mtcars)
+plot(wt, mpg)
+abline(lm(mpg~wt))
+title("regression")
+detach(mtcars)
+dev.off()
+hist(wt, mpg)
+attach(mtcars)
+hist(wt, mpg)
+dose <- c(20, 30, 40, 45, 60)
+drugA <- c(16, 20, 27, 40, 60)
+drugB <- c(15, 18, 25, 31, 40)
+library(ggplot2)
+detach(mtcars)
+qplot(dose, drugA, drugB)
+qplot(dose, drugA, type="b")
+plot(dose, drugA, type="b")
+qplot(dose, drugA, type="c")
+plot(dose, drugA, type="c")
+plot(dose, drugA, type="d")
+plot(dose, drugA, type="a")
+plot(dose, drugA, type="b")
+opar <- par(no.readonly=TRUE)
+par(lty=2, pch=17)
+plot(does, drugA, type="b")
+plot(dose, drugA, type="b")
+par(opar)
+update.package
+update.packages
+update.packages()
+update.library()
+update.libraries()
+n <- 40
+colour <- rainbow(n)
+pie(rep(1, n), labels=colours, col=colours)
+pie(rep(1, n), labels=colour, col=colour)
+pie(rep(1, n), labels=colour, col=colour, bg=#f1f1f1)
+end
+pie
+pie(rep(1, n), labels=colour, col=colour, bg="#f1f1f1")
+pie(rep(1, n), labels=colour, col=colour, bg="#fff")
+pie(rep(1, n), labels=colour, col=colour, bg="#f0f0f0")
+pie(rep(1, n), labels=colour, col=colour, bg="#000001")
