@@ -1,4 +1,3 @@
-
 R version 2.15.3 (2013-03-01) -- "Security Blanket"
 Copyright (C) 2013 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
