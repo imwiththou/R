@@ -12,3 +12,10 @@ From the end of last century to the beginning of this century the Human Genome P
 I want to mention another aspect of human body, our brain.
 
 
+---
+
+### Contact? No prob.
+
+Just feel free to drop me an email at <a herf="mailto:i@oculus.im">i@oculus.im</a>, or if you just want to say hi, that's totally fine.
+
+&copy; Stephen 2013
